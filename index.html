@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>文旅非遗 · 智传仙桃 —— 沔阳小镇</title>
+<style>
+/* ========== 基础重置 ========== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;color:#2c3e3c;background:#f7f5ef;line-height:1.8;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+[hidden]{display:none!important}
+
+::selection{background:#a9d3cf;color:#14403c}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#e6f1ef}
+::-webkit-scrollbar-thumb{background:#58a8a2;border-radius:6px}
+
+/* ========== 顶部导航 ========== */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 5vw;transition:all .4s}
+#navbar.scrolled{background:rgba(247,245,239,.96);box-shadow:0 2px 18px rgba(20,64,60,.08);padding:9px 5vw}
+.brand{display:flex;align-items:center}
+.brand .seal{margin-right:12px;flex-shrink:0}
+.seal{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#b8503c,#8f3325);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:24px;font-weight:700;
+  box-shadow:0 4px 12px rgba(143,51,37,.35);letter-spacing:0}
+.brand-name{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:21px;font-weight:700;color:#14403c;letter-spacing:2px}
+.brand-sub{font-size:11px;color:#2e7d78;letter-spacing:4px;display:block;margin-top:-3px}
+.nav-links{display:flex}
+.nav-links a + a{margin-left:34px}
+.nav-links a{font-size:15.5px;color:#2c3e3c;position:relative;padding:4px 0;letter-spacing:1px}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:#58a8a2;transition:all .3s;border-radius:2px}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:#2e7d78;font-weight:600}
+#hamburger{display:none;flex-direction:column;padding:6px}
+#hamburger span + span{margin-top:5px}
+#hamburger span{width:24px;height:2.5px;background:#14403c;border-radius:2px;transition:all .3s}
+
+/* 滚动进度条 */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:101;
+  background:linear-gradient(90deg,#58a8a2,#c9a86a);border-radius:0 3px 3px 0}
+
+/* ========== 首屏 ========== */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;
+  background:linear-gradient(180deg,#dcecea 0%,#e9f2ef 42%,#f3f1e9 78%,#f7f5ef 100%)}
+.hero-scene{position:absolute;top:0;right:0;bottom:0;left:0}
+.layer{position:absolute;top:0;right:0;bottom:0;left:0}
+.layer svg{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:110vw;min-width:1440px;height:auto}
+.layer-clouds svg{bottom:auto;top:0;height:100%}
+.cloud{animation:drift 46s linear infinite alternate}
+.cloud.c2{animation-duration:64s;animation-direction:alternate-reverse}
+@keyframes drift{from{transform:translateX(-60px)}to{transform:translateX(80px)}}
+.bird{animation:fly 30s linear infinite}
+.bird.b2{animation-duration:38s;animation-delay:-14s}
+@keyframes fly{0%{transform:translate(-220px,40px);opacity:0}6%{opacity:.8}92%{opacity:.8}100%{transform:translate(1660px,-30px);opacity:0}}
+.waves g{animation:wave 9s ease-in-out infinite alternate}
+.waves g.w2{animation-duration:12s;animation-direction:alternate-reverse}
+.waves g.w3{animation-duration:15s}
+@keyframes wave{from{transform:translateX(-26px)}to{transform:translateX(26px)}}
+.boat{animation:bob 5s ease-in-out infinite alternate;transform-origin:center}
+@keyframes bob{from{transform:translateY(0) rotate(-1.2deg)}to{transform:translateY(-6px) rotate(1.2deg)}}
+.petal{position:absolute;top:-6vh;opacity:0;pointer-events:none;z-index:3;
+  animation:fall linear infinite}
+@keyframes fall{
+  0%{transform:translate3d(0,-6vh,0) rotate(0);opacity:0}
+  8%{opacity:.85}
+  50%{transform:translate3d(-7vw,50vh,0) rotate(190deg)}
+  92%{opacity:.7}
+  100%{transform:translate3d(-14vw,106vh,0) rotate(360deg);opacity:0}
+}
+.hero-text{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 6vw;transform:translateY(-4vh)}
+.hero-eyebrow{font-size:15px;letter-spacing:8px;color:#2e7d78;margin-bottom:20px;display:flex;align-items:center}
+.hero-eyebrow::before{content:"";width:52px;height:1px;background:#58a8a2;margin-right:16px;flex-shrink:0}
+.hero-eyebrow::after{content:"";width:52px;height:1px;background:#58a8a2;margin-left:16px;flex-shrink:0}
+.hero h1{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:64px;color:#14403c;letter-spacing:8px;font-weight:700;
+  text-shadow:0 2px 24px rgba(247,245,239,.9)}
+.hero h1 .dot{color:#c9a86a;margin:0 6px}
+.hero-slogan{margin-top:18px;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:20px;color:#2e7d78;letter-spacing:6px}
+.hero-desc{margin-top:14px;max-width:560px;font-size:15px;color:#5a6f6c;letter-spacing:1px}
+.hero-btns{margin-top:38px;display:flex;flex-wrap:wrap;justify-content:center}
+.hero-btns .btn{margin:9px}
+.btn{display:inline-flex;align-items:center;padding:13px 34px;border-radius:999px;font-size:15.5px;letter-spacing:2px;
+  transition:all .3s;border:1.5px solid transparent}
+.btn-primary{background:#14403c;color:#eaf5f3;box-shadow:0 8px 22px rgba(20,64,60,.28)}
+.btn-primary:hover{background:#2e7d78;transform:translateY(-3px);box-shadow:0 14px 28px rgba(46,125,120,.35)}
+.btn-ghost{border-color:#2e7d78;color:#2e7d78;background:rgba(255,255,255,.55)}
+.btn-ghost:hover{background:#2e7d78;color:#fff;transform:translateY(-3px)}
+.scroll-hint{position:absolute;bottom:5vh;left:50%;transform:translateX(-50%);z-index:6;display:flex;flex-direction:column;
+  align-items:center;color:#2e7d78;font-size:12.5px;letter-spacing:4px}
+.scroll-hint .mouse{margin-bottom:6px}
+.mouse{width:22px;height:36px;border:1.6px solid #2e7d78;border-radius:12px;position:relative;opacity:.8}
+.mouse::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:3px;
+  background:#2e7d78;animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(11px);opacity:0}100%{opacity:0}}
+.hero-fade{position:absolute;bottom:0;left:0;right:0;height:120px;z-index:4;
+  background:linear-gradient(180deg,transparent,#f7f5ef)}
+
+/* ========== 关键词走马灯 ========== */
+.marquee{background:#14403c;color:#cfe6e2;overflow:hidden;padding:13px 0;white-space:nowrap;position:relative;z-index:6}
+.marquee-track{display:inline-block;animation:marquee 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;letter-spacing:4px;font-size:15px;margin:0 22px}
+.marquee-track i{color:#c9a86a;font-style:normal;margin:0 4px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ========== 数据条 ========== */
+.stats{max-width:1060px;margin:-46px auto 0;position:relative;z-index:10;padding:0 5vw}
+.stats-card{background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(20,64,60,.10);border:1px solid rgba(88,168,162,.16);
+  display:flex;flex-wrap:wrap;padding:30px 10px}
+.stat{width:25%;padding:0 10px;text-align:center;position:relative}
+.stat+.stat::before{content:"";position:absolute;left:10px;top:22%;height:56%;width:1px;background:rgba(88,168,162,.25)}
+.stat b{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:32px;color:#2e7d78;display:block;line-height:1.2}
+.stat b i{font-style:normal;font-size:.55em;color:#c9a86a}
+.stat span{font-size:13.5px;color:#6b807d;letter-spacing:2px}
+
+/* ========== 通用版块 ========== */
+section.block{padding:90px 5vw}
+.wrap{max-width:1180px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:56px}
+.eyebrow{display:inline-flex;align-items:center;color:#2e7d78;letter-spacing:5px;font-size:13.5px;margin-bottom:14px}
+.eyebrow::before{content:"";width:34px;height:1px;background:#58a8a2;margin-right:12px;flex-shrink:0}
+.eyebrow::after{content:"";width:34px;height:1px;background:#58a8a2;margin-left:12px;flex-shrink:0}
+.sec-head h2{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:38px;color:#14403c;letter-spacing:5px}
+.sec-head p{margin-top:12px;color:#5a6f6c;max-width:640px;margin-left:auto;margin-right:auto;font-size:15.5px}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.65,.3,1),transform .9s cubic-bezier(.2,.65,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ========== 景点板块 ========== */
+#scenic{background:linear-gradient(180deg,#f7f5ef,#eef5f2)}
+.scenic-grid{display:flex;flex-wrap:wrap}
+.spot{width:50%;padding:15px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(20,64,60,.10);border:1px solid rgba(88,168,162,.14);
+  transition:transform .45s,box-shadow .45s;display:flex;flex-direction:column}
+.spot:hover{transform:translateY(-10px);box-shadow:0 22px 46px rgba(20,64,60,.16)}
+.spot:nth-child(2){transform:translateY(26px)}
+.spot:nth-child(2):hover{transform:translateY(16px)}
+.spot:nth-child(4){transform:translateY(26px)}
+.spot:nth-child(4):hover{transform:translateY(16px)}
+.spot-fig{position:relative;overflow:hidden;padding-bottom:60%;height:0;
+  background:linear-gradient(135deg,#dcebe7,#b9d8d2)}
+.spot-fig::before{content:attr(data-char);position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;
+  font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:96px;color:rgba(46,125,120,.22)}
+.spot-fig img{position:absolute;top:0;left:0;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.65,.3,1)}
+.spot:hover .spot-fig img{transform:scale(1.08)}
+.spot-fig .tag{position:absolute;left:16px;top:16px;z-index:2;background:rgba(20,64,60,.85);color:#e7f4f1;
+  padding:5px 14px;border-radius:999px;font-size:12.5px;letter-spacing:3px}
+.spot-body{padding:24px 26px 28px}
+.spot-body h3{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:22px;color:#14403c;letter-spacing:2px;display:flex;align-items:center}
+.spot-body h3::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(88,168,162,.4),transparent);margin-left:10px}
+.spot-body p{margin-top:10px;font-size:14.5px;color:#5a6f6c}
+
+/* ========== 非遗板块 ========== */
+#heritage{background:
+  radial-gradient(1000px 500px at 85% -5%,rgba(88,168,162,.18),transparent 60%),
+  radial-gradient(800px 400px at 0% 100%,rgba(201,168,106,.12),transparent 55%),
+  #14403c}
+#heritage .sec-head h2,#heritage .eyebrow{color:#eaf5f3}
+#heritage .eyebrow{color:#a9d3cf}
+#heritage .sec-head p{color:#a9c6c1}
+.smart-chips{display:flex;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.smart-chips span{border:1px solid rgba(169,211,207,.4);color:#cfe6e2;padding:6px 18px;border-radius:999px;font-size:13px;letter-spacing:2px;margin:6px}
+.smart-chips b{color:#c9a86a;font-weight:400;margin-right:6px}
+.heritage-grid{display:flex;flex-wrap:wrap;align-items:center}
+.map-box{width:56%;padding-right:22px;position:relative}
+#bdMap{width:100%;height:459px;border-radius:20px;overflow:hidden;
+  border:10px solid #6d4a2b;outline:3px solid #8c6136;outline-offset:-6px;
+  box-shadow:0 18px 50px rgba(0,0,0,.35);background:radial-gradient(90% 120% at 50% 40%,#fdf6e0,#d8b878)}
+.map-placeholder{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#7a5a24;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:16px;letter-spacing:3px;z-index:1}
+.map-placeholder .map-ico{font-size:48px;opacity:.5;animation:mapPulse 2.6s ease-in-out infinite}
+@keyframes mapPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.7;transform:scale(1.08)}}
+.map-ctrl{margin-top:16px;display:flex;align-items:center;justify-content:center}
+.map-btn{background:#c9a86a;color:#3d2c0e;padding:11px 30px;border-radius:999px;font-size:15px;letter-spacing:3px;
+  box-shadow:0 6px 18px rgba(201,168,106,.35);transition:all .3s;border:none;cursor:pointer}
+.map-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(201,168,106,.5)}
+.map-side{width:44%}
+.map-side h3{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:26px;color:#eaf5f3;letter-spacing:3px}
+.map-side .quote{margin:14px 0 18px;color:#c9a86a;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:17px;letter-spacing:2px}
+.map-side p{color:#a9c6c1;font-size:14.8px}
+.h-list{margin-top:22px}
+.h-list li{display:flex;align-items:flex-start;color:#cfe6e2;font-size:14.5px;margin-bottom:10px}
+.h-list li:last-child{margin-bottom:0}
+.h-list li::before{content:"\25C6";color:#c9a86a;font-size:11px;margin-top:7px;margin-right:10px;flex-shrink:0}
+.badge-n{display:inline-block;background:rgba(201,168,106,.16);border:1px solid rgba(201,168,106,.5);color:#c9a86a;
+  font-size:12px;letter-spacing:2px;padding:3px 12px;border-radius:999px;margin-left:10px;vertical-align:3px}
+.h-interactive{display:flex;flex-wrap:wrap;margin-top:54px}
+.h-card{width:49%;padding:26px 15px;background:rgba(233,244,241,.12);border:1px solid rgba(169,211,207,.22);border-radius:18px;
+  box-sizing:border-box}
+.h-card:first-child{margin-right:2%}
+.h-card h4{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;color:#eaf5f3;font-size:19px;letter-spacing:3px;display:flex;align-items:center}
+.h-card h4 .badge-n{margin-left:10px}
+.h-card>p{color:#a9c6c1;font-size:14px;margin-top:8px}
+.paper-stage{position:relative;display:flex;align-items:center;justify-content:center;margin:16px 0;
+  background:radial-gradient(60% 70% at 50% 50%,#fdf3e3,#f0dfb6);border-radius:14px;min-height:220px;overflow:hidden}
+.paper-stage::before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;
+  background:repeating-linear-gradient(105deg,rgba(120,80,20,.05) 0,rgba(120,80,20,.05) 2px,transparent 2px,transparent 6px)}
+#flower{width:190px;height:190px;position:relative;z-index:2}
+#flower .pt{transform-origin:100px 100px;transform:scale(.06) rotate(-60deg);opacity:0;
+  transition:transform .7s cubic-bezier(.34,1.45,.5,1),opacity .5s}
+#flower.unfold .pt{transform:scale(1) rotate(0);opacity:1}
+#flower .pt:nth-child(2){transition-delay:.07s}#flower .pt:nth-child(3){transition-delay:.14s}
+#flower .pt:nth-child(4){transition-delay:.21s}#flower .pt:nth-child(5){transition-delay:.28s}
+#flower .pt:nth-child(6){transition-delay:.35s}#flower .pt:nth-child(7){transition-delay:.42s}
+#flower .pt:nth-child(8){transition-delay:.49s}
+.paper-tip{position:absolute;bottom:8px;width:100%;text-align:center;font-size:12px;color:#9a7a3c;letter-spacing:2px;z-index:2}
+.drum-stage{position:relative;display:flex;align-items:center;justify-content:center;margin:16px 0;
+  background:radial-gradient(60% 70% at 50% 50%,#fdf3e3,#eedcb0);border-radius:14px;min-height:220px;overflow:hidden}
+.drum-stage svg{margin-right:20px;flex-shrink:0;display:block}
+.eq{display:flex;align-items:flex-end;height:110px;z-index:2;flex-shrink:0}
+.eq span{width:9px;border-radius:6px;background:linear-gradient(180deg,#c14b3a,#8f3325);height:22px;margin-right:5px;display:block}
+.eq span:last-child{margin-right:0}
+.drum-stage.playing .eq span{animation:eq 1s ease-in-out infinite alternate}
+.drum-stage.playing .eq span:nth-child(1){animation-delay:0s}.drum-stage.playing .eq span:nth-child(2){animation-delay:.12s}
+.drum-stage.playing .eq span:nth-child(3){animation-delay:.24s}.drum-stage.playing .eq span:nth-child(4){animation-delay:.36s}
+.drum-stage.playing .eq span:nth-child(5){animation-delay:.48s}.drum-stage.playing .eq span:nth-child(6){animation-delay:.6s}
+.drum-stage.playing .eq span:nth-child(7){animation-delay:.72s}
+@keyframes eq{from{height:18px}to{height:104px}}
+.drum-lyric{position:absolute;bottom:10px;width:100%;text-align:center;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;
+  color:#7a5a24;font-size:14.5px;letter-spacing:2px;z-index:2}
+.stage-ctrl{text-align:center;margin-top:12px}
+.drum-btn{background:#c9a86a;color:#3d2c0e;padding:11px 30px;border-radius:999px;font-size:15px;letter-spacing:3px;
+  box-shadow:0 6px 18px rgba(201,168,106,.35);transition:all .3s;border:none;cursor:pointer;display:inline-block}
+.drum-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(201,168,106,.5)}
+
+/* ========== 美食板块 ========== */
+#food{background:linear-gradient(180deg,#eef5f2,#f7f5ef)}
+.food-feature{background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(20,64,60,.10);border:1px solid rgba(88,168,162,.14);
+  overflow:hidden;display:flex;flex-wrap:wrap;margin-bottom:44px}
+.food-show{position:relative;min-height:360px;width:51.2%;background:linear-gradient(135deg,#e8f2ee,#c8e0d8)}
+.food-show::before{content:attr(data-char);position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;
+  font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:120px;color:rgba(46,125,120,.18)}
+.food-show img{position:absolute;top:0;left:0;width:100%;height:100%;transition:transform .7s}
+.food-info{padding:34px 36px;width:48.8%;box-sizing:border-box}
+.food-info h3{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:26px;color:#14403c;letter-spacing:3px}
+.food-info .saying{color:#c14b3a;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;letter-spacing:2px;margin:6px 0 16px;font-size:15.5px}
+.tabs{display:flex;flex-wrap:wrap;margin-bottom:18px}
+.tab-btn{padding:8px 22px;border-radius:999px;border:1.4px solid rgba(46,125,120,.4);color:#2e7d78;
+  font-size:14px;letter-spacing:2px;transition:all .3s;background:#fff;margin:5px}
+.tab-btn.active,.tab-btn:hover{background:#2e7d78;color:#fff;border-color:#2e7d78}
+.panel{display:none}
+.panel.active{display:block;animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.panel p{color:#5a6f6c;font-size:14.8px}
+.panel .mini-tag{display:inline-block;margin-top:14px;background:#e6f1ef;color:#2e7d78;
+  font-size:12.5px;padding:4px 14px;border-radius:999px;letter-spacing:2px;margin-right:8px}
+.food-grid{display:flex;flex-wrap:wrap}
+.food-card{width:33.333%;padding:13px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(20,64,60,.10);
+  border:1px solid rgba(88,168,162,.14);transition:all .4s;box-sizing:border-box}
+.food-card:hover{transform:translateY(-8px)}
+.food-fig{position:relative;overflow:hidden;padding-bottom:75%;height:0;background:linear-gradient(135deg,#e8f2ee,#c8e0d8)}
+.food-fig::before{content:attr(data-char);position:absolute;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;
+  font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:72px;color:rgba(46,125,120,.2)}
+.food-fig img{position:absolute;top:0;left:0;width:100%;height:100%;transition:transform .7s}
+.food-card:hover .food-fig img{transform:scale(1.08)}
+.food-card .body{padding:18px 22px 24px}
+.food-card h4{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:19px;color:#14403c;letter-spacing:2px}
+.food-card p{font-size:13.8px;color:#5a6f6c;margin-top:6px}
+
+/* ========== 攻略板块 ========== */
+#guide{background:linear-gradient(180deg,#f7f5ef,#eaf3f0)}
+.guide-tabs{display:flex;flex-wrap:wrap;justify-content:center;margin-bottom:36px}
+.guide-tabs .tab-btn{margin:6px}
+.timeline{position:relative;max-width:760px;margin:0 auto;padding-left:30px}
+.timeline::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(180deg,#58a8a2,#a9d3cf);border-radius:2px}
+.tl-item{position:relative;padding:0 0 30px 24px}
+.tl-item::before{content:"";position:absolute;left:-30px;top:8px;width:16px;height:16px;border-radius:50%;
+  background:#fff;border:3.5px solid #2e7d78;box-shadow:0 0 0 5px rgba(88,168,162,.18)}
+.tl-item .time{display:inline-block;background:#14403c;color:#d9ece8;font-size:12.5px;
+  padding:3px 13px;border-radius:999px;letter-spacing:2px;margin-bottom:6px}
+.tl-item h4{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:18.5px;color:#14403c;letter-spacing:2px}
+.tl-item p{font-size:14px;color:#5a6f6c;margin-top:4px}
+.day-tag{display:inline-block;background:#c9a86a;color:#3d2c0e;font-size:12px;padding:2px 12px;
+  border-radius:999px;letter-spacing:2px;margin-bottom:4px;margin-right:8px}
+.guide-cards{display:flex;flex-wrap:wrap;margin-top:50px}
+.g-card{width:33.333%;padding:13px 26px;box-sizing:border-box;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(20,64,60,.10);border:1px solid rgba(88,168,162,.14)}
+.g-card h4{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:18.5px;color:#14403c;letter-spacing:2px;display:flex;align-items:center;margin-bottom:12px}
+.g-card h4 .ico{width:34px;height:34px;border-radius:10px;background:#e6f1ef;display:flex;align-items:center;justify-content:center;font-size:17px;margin-right:10px;flex-shrink:0}
+.g-card li{font-size:14px;color:#5a6f6c;padding:5px 0;display:flex}
+.g-card li::before{content:"\00B7";color:#2e7d78;font-weight:700;margin-right:8px;flex-shrink:0}
+
+/* ========== 页脚 ========== */
+footer{background:#14403c;color:#9fbfba;padding:64px 5vw 30px}
+.foot-wrap{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap}
+.foot-brand{width:41.2%;padding-right:22px}
+.foot-wrap>div:nth-child(2){width:29.4%;padding-right:22px}
+.foot-wrap>div:nth-child(3){width:29.4%}
+.foot-brand .seal{margin-bottom:14px}
+.foot-brand h3{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;color:#eaf5f3;letter-spacing:4px;font-size:21px}
+.foot-brand p{font-size:13.8px;margin-top:10px}
+footer h5{color:#cfe6e2;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;letter-spacing:3px;font-size:16px;margin-bottom:14px}
+footer li{padding:4px 0;font-size:13.8px}
+footer li a:hover{color:#c9a86a}
+.copyright{border-top:1px solid rgba(169,211,207,.16);margin-top:44px;padding-top:22px;text-align:center;
+  font-size:12.8px;letter-spacing:2px;color:#7fa39d}
+
+/* 返回顶部 */
+#toTop{position:fixed;right:26px;bottom:26px;width:48px;height:48px;border-radius:50%;z-index:90;
+  background:#14403c;color:#eaf5f3;font-size:19px;box-shadow:0 8px 22px rgba(20,64,60,.35);
+  opacity:0;pointer-events:none;transition:all .4s;display:flex;align-items:center;justify-content:center}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{background:#2e7d78;transform:translateY(-4px)}
+
+/* ========== AI 智游助手 ========== */
+#aiFab{position:fixed;right:26px;bottom:88px;width:56px;height:56px;border-radius:50%;z-index:95;
+  background:linear-gradient(135deg,#2e7d78,#58a8a2);color:#fff;font-size:24px;
+  box-shadow:0 10px 28px rgba(46,125,120,.42);display:flex;align-items:center;justify-content:center;
+  transition:transform .35s,box-shadow .35s;cursor:pointer;border:none}
+#aiFab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 16px 34px rgba(46,125,120,.55)}
+#aiFab .fab-ring{position:absolute;top:-4px;right:-4px;bottom:-4px;left:-4px;border-radius:50%;border:2px solid rgba(88,168,162,.5);animation:aiPulse 2.4s ease-in-out infinite}
+@keyframes aiPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.18);opacity:0}}
+#aiFab .fab-close{display:none}#aiFab.open .fab-ico{display:none}#aiFab.open .fab-close{display:block}
+#aiPanel{position:fixed;right:26px;bottom:88px;width:92vw;max-width:380px;height:80vh;max-height:560px;z-index:96;
+  background:#fff;border-radius:20px;box-shadow:0 24px 60px rgba(20,64,60,.28);border:1px solid rgba(88,168,162,.2);
+  display:flex;flex-direction:column;overflow:hidden;transform:translateY(20px) scale(.96);opacity:0;
+  pointer-events:none;transition:all .4s cubic-bezier(.2,.8,.3,1);transform-origin:bottom right}
+#aiPanel.open{transform:none;opacity:1;pointer-events:auto}
+.ai-head{padding:16px 18px;background:linear-gradient(135deg,#14403c,#2e7d78);color:#eaf5f3;display:flex;align-items:center}
+.ai-head .ava{width:38px;height:38px;border-radius:50%;background:#c9a86a;color:#3d2c0e;display:flex;align-items:center;justify-content:center;font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:18px;font-weight:700;margin-right:12px;flex-shrink:0}
+.ai-head>div{flex:1}
+.ai-head h4{font-family:"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;font-size:16px;letter-spacing:2px}
+.ai-head .sub{font-size:11.5px;color:#a9d3cf;letter-spacing:1px;display:block;margin-top:2px}
+.ai-close{margin-left:auto;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);color:#eaf5f3;font-size:16px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0}
+.ai-close:hover{background:rgba(255,255,255,.3);transform:rotate(90deg)}
+.ai-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;background:#f7f5ef}
+.ai-body .msg + .msg{margin-top:14px}
+.msg{max-width:84%;padding:10px 14px;border-radius:14px;font-size:14.5px;line-height:1.7;animation:msgIn .35s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.bot{align-self:flex-start;background:#fff;border:1px solid rgba(88,168,162,.18);border-bottom-left-radius:4px}
+.msg.user{align-self:flex-end;background:#2e7d78;color:#fff;border-bottom-right-radius:4px}
+.msg .ql{display:flex}
+.msg .ql i{width:6px;height:6px;border-radius:50%;background:#58a8a2;animation:dot 1.2s infinite;margin-right:4px}
+.msg .ql i:last-child{margin-right:0}
+.msg .ql i:nth-child(2){animation-delay:.2s}.msg .ql i:nth-child(3){animation-delay:.4s}
+@keyframes dot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.ai-tips{padding:0 16px 12px}.ai-tips .tip-label{font-size:11.5px;color:#7a8d8a;letter-spacing:2px;margin-bottom:8px}
+.ai-tips .chips{display:flex;flex-wrap:wrap}
+.ai-tips .chip{background:#e6f1ef;color:#2e7d78;font-size:12.5px;padding:6px 12px;border-radius:999px;cursor:pointer;border:1px solid rgba(88,168,162,.25);transition:all .25s;margin:4px}
+.ai-tips .chip:hover{background:#2e7d78;color:#fff;transform:translateY(-2px)}
+.ai-input{padding:12px 14px;border-top:1px solid rgba(88,168,162,.18);display:flex;align-items:flex-end;background:#fff}
+.ai-input textarea{flex:1;resize:none;border:1px solid rgba(88,168,162,.3);border-radius:12px;padding:10px 14px;font-size:14px;font-family:inherit;max-height:90px;outline:none;transition:all .25s;margin-right:10px}
+.ai-input textarea:focus{border-color:#2e7d78;box-shadow:0 0 0 3px rgba(46,125,120,.12)}
+.ai-input button{width:42px;height:42px;border-radius:50%;background:#14403c;color:#fff;font-size:16px;border:none;cursor:pointer;transition:all .25s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ai-input button:hover{background:#2e7d78;transform:translateY(-2px)}
+.ai-input button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* ========== 响应式 ========== */
+@media (max-width:960px){
+  .hero h1{font-size:48px}
+  .nav-links{position:fixed;top:0;right:-70vw;width:66vw;max-width:300px;height:100vh;background:rgba(20,64,60,.97);
+    flex-direction:column;justify-content:center;align-items:center;transition:right .4s}
+  .nav-links a{color:#dcecea;font-size:17px}
+  .nav-links a + a{margin-left:0;margin-top:30px}
+  .nav-links.open{right:0}
+  #hamburger{display:flex;z-index:120}
+  #hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  #hamburger.open span:nth-child(2){opacity:0}
+  #hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  .spot,.food-card,.g-card{width:100%}
+  .h-card{width:100%;margin-right:0!important}
+  .spot:nth-child(2),.spot:nth-child(4){transform:none}
+  .spot:nth-child(2):hover,.spot:nth-child(4):hover{transform:translateY(-10px)}
+  .map-box,.map-side{width:100%;padding-left:0}
+  .map-box{margin-bottom:30px}
+  .food-show,.food-info{width:100%}
+  .food-show{min-height:260px}
+  .stat{width:50%}
+  .stat:nth-child(1),.stat:nth-child(2){margin-bottom:26px}
+  .stat:nth-child(3)::before{display:none}
+  .foot-brand,.foot-wrap>div:nth-child(2),.foot-wrap>div:nth-child(3){width:100%;padding-right:0;margin-bottom:30px}
+  section.block{padding:72px 5vw}
+}
+@media (max-width:600px){
+  .hero h1{font-size:36px;letter-spacing:4px}
+  .hero-slogan{font-size:16px}
+  .nav-links{width:78vw;right:-84vw}
+  .hero-btns .btn{padding:11px 24px;font-size:14px}
+  #aiPanel{right:0;left:0;bottom:0;width:100%;max-width:100%;height:80vh;max-height:100vh;border-radius:20px 20px 0 0}
+  #aiFab{right:20px;bottom:80px}
+  .sec-head h2{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+<script src="https://api.map.baidu.com/api?v=3.0&ak=5XwIrQtYaKHKtTS37SUyZFDADufwqNzE"></script>
+</head>
+<body>
+
+<!-- 滚动进度条 -->
+<div id="progress"></div>
+
+<!-- ========== 导航 ========== -->
+<header id="navbar">
+  <a class="brand" href="#home">
+    <span class="seal">沔</span>
+    <span>
+      <span class="brand-name">沔阳小镇</span>
+      <span class="brand-sub">文旅非遗 · 智传仙桃</span>
+    </span>
+  </a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#home" class="active">首页</a>
+    <a href="#scenic">景点</a>
+    <a href="#heritage">非遗</a>
+    <a href="#food">美食</a>
+    <a href="#guide">攻略</a>
+    <a href="#about">关于</a>
+  </nav>
+  <button id="hamburger" aria-label="菜单"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ========== 首屏 ========== -->
+<section class="hero" id="home">
+  <div class="hero-scene" id="scene">
+    <div class="layer layer-clouds" data-depth="0.05">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g class="cloud" fill="#ffffff" opacity=".85">
+          <ellipse cx="240" cy="110" rx="120" ry="26"/><ellipse cx="300" cy="94" rx="70" ry="20"/>
+        </g>
+        <g class="cloud c2" fill="#ffffff" opacity=".7">
+          <ellipse cx="1080" cy="160" rx="150" ry="24"/><ellipse cx="1150" cy="144" rx="80" ry="18"/>
+        </g>
+        <g class="bird" stroke="#4a7f7a" stroke-width="2.4" fill="none" stroke-linecap="round">
+          <path d="M330,110 q9,-11 18,0 q9,-11 18,0"/>
+        </g>
+        <g class="bird b2" stroke="#4a7f7a" stroke-width="2" fill="none" stroke-linecap="round">
+          <path d="M430,150 q7,-9 14,0 q7,-9 14,0"/>
+        </g>
+      </svg>
+    </div>
+    <div class="layer" data-depth="0.12">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="#8fbcb6" opacity=".45">
+          <path d="M0,560 C130,498 260,508 400,540 C530,566 640,518 770,534 C900,548 990,512 1110,540 C1250,566 1350,542 1440,556 L1440,700 L0,700 Z"/>
+          <g>
+            <rect x="1004" y="438" width="14" height="124"/>
+            <path d="M982,446 h58 l-29,-24 z"/>
+            <path d="M988,400 h46 l-23,-19 z"/>
+            <path d="M994,358 h34 l-17,-15 z"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="layer" data-depth="0.24">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="#5b9c97" opacity=".78">
+          <path d="M118,560 v-64 h74 v64 z M108,496 q47,-34 94,0 z"/>
+          <path d="M226,560 v-84 h86 v84 z M216,476 q53,-40 106,0 z"/>
+          <path d="M352,560 v-56 h66 v56 z M342,504 q43,-30 86,0 z"/>
+          <path d="M452,560 v-92 h96 v92 z M440,468 q60,-44 120,0 z"/>
+          <path d="M582,560 v-60 h70 v60 z M572,500 q45,-32 90,0 z"/>
+          <path d="M668,560 Q736,486 804,560 L776,560 Q736,520 696,560 Z"/>
+          <path d="M662,520 H810 v10 H662 z"/>
+          <path d="M846,560 v-70 h78 v70 z M836,490 q49,-36 98,0 z"/>
+          <path d="M958,560 v-88 h92 v88 z M946,472 q58,-42 116,0 z"/>
+          <path d="M1082,560 v-58 h68 v58 z M1072,502 q43,-30 86,0 z"/>
+          <path d="M1184,560 v-80 h88 v80 z M1172,480 q56,-40 112,0 z"/>
+          <path d="M1306,560 v-64 h80 v64 z M1296,496 q50,-36 100,0 z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="layer" data-depth="0.38">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g fill="#2f6f6a">
+          <path d="M0,700 V588 Q120,582 210,604 Q150,640 64,646 Q24,650 0,662 Z"/>
+          <path d="M1440,700 V596 Q1310,588 1228,610 Q1296,646 1392,650 Q1420,652 1440,664 Z"/>
+          <path d="M1338,600 q-4,-58 2,-96" stroke="#245b57" stroke-width="9" fill="none" stroke-linecap="round"/>
+          <ellipse cx="1332" cy="486" rx="58" ry="34" opacity=".9"/>
+          <ellipse cx="1372" cy="510" rx="40" ry="24" opacity=".8"/>
+        </g>
+        <g class="boat">
+          <g stroke="#24544f" stroke-width="5" fill="none" stroke-linecap="round">
+            <path d="M852,592 Q884,604 916,592 L906,601 Q884,609 862,601 Z" fill="#24544f"/>
+            <circle cx="880" cy="560" r="7" fill="#24544f"/>
+            <path d="M880,567 q-6,12 -4,24 M880,572 l10,14 M880,572 l-12,12"/>
+            <path d="M894,530 L884,590"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="layer" data-depth="0.16">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#79b7b1" stop-opacity=".75"/>
+            <stop offset="1" stop-color="#4c8d88" stop-opacity=".92"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="558" width="1440" height="142" fill="url(#wg)"/>
+        <g class="waves" stroke="rgba(255,255,255,.4)" stroke-width="2.5" fill="none" stroke-linecap="round">
+          <g class="w1"><path d="M-40,585 q60,-9 120,0 t120,0 t120,0 t120,0 t120,0 t120,0 t120,0 t120,0 t120,0 t120,0 t120,0 t120,0"/></g>
+          <g class="w2"><path d="M-40,622 q70,-10 140,0 t140,0 t140,0 t140,0 t140,0 t140,0 t140,0 t140,0 t140,0 t140,0 t140,0"/></g>
+          <g class="w3"><path d="M-40,658 q55,-8 110,0 t110,0 t110,0 t110,0 t110,0 t110,0 t110,0 t110,0 t110,0 t110,0 t110,0"/></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <span class="petal" style="left:12%;animation-duration:11s;animation-delay:0s">
+    <svg width="16" height="14" viewBox="0 0 16 14"><path d="M0,4 C3,0 10,-1 14,3 C13,9 6,12 1,9 C-1,7 0,6 0,4Z" fill="#f2b8c6"/></svg></span>
+  <span class="petal" style="left:32%;animation-duration:14s;animation-delay:3s">
+    <svg width="13" height="11" viewBox="0 0 16 14"><path d="M0,4 C3,0 10,-1 14,3 C13,9 6,12 1,9 C-1,7 0,6 0,4Z" fill="#f6cbd6"/></svg></span>
+  <span class="petal" style="left:56%;animation-duration:12.5s;animation-delay:6s">
+    <svg width="17" height="15" viewBox="0 0 16 14"><path d="M0,4 C3,0 10,-1 14,3 C13,9 6,12 1,9 C-1,7 0,6 0,4Z" fill="#eeaab9"/></svg></span>
+  <span class="petal" style="left:76%;animation-duration:15s;animation-delay:1.5s">
+    <svg width="12" height="10" viewBox="0 0 16 14"><path d="M0,4 C3,0 10,-1 14,3 C13,9 6,12 1,9 C-1,7 0,6 0,4Z" fill="#f2b8c6"/></svg></span>
+  <span class="petal" style="left:90%;animation-duration:13s;animation-delay:8s">
+    <svg width="15" height="13" viewBox="0 0 16 14"><path d="M0,4 C3,0 10,-1 14,3 C13,9 6,12 1,9 C-1,7 0,6 0,4Z" fill="#f6cbd6"/></svg></span>
+
+  <div class="hero-text" id="heroText">
+    <div class="hero-eyebrow">江汉明珠 · 千年沔阳</div>
+    <h1>文旅非遗<span class="dot">·</span>智传仙桃</h1>
+    <div class="hero-slogan">—— 沔阳小镇 · 一城水色 · 满巷非遗 ——</div>
+    <p class="hero-desc">皮影摇曳、渔鼓声声、蒸香满街。跟随沔水波光，走进这座从《诗经》里走来的水乡古镇。</p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#scenic">开启水乡之旅</a>
+      <a class="btn btn-ghost" href="#heritage">探秘非遗</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div>滚动入画</div>
+  <div class="hero-fade"></div>
+</section>
+
+<!-- 关键词走马灯 -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee">
+    <span>沔阳皮影戏<i>&#10022;</i></span><span>雕花剪纸<i>&#10022;</i></span><span>沔阳渔鼓<i>&#10022;</i></span>
+    <span>沔阳三蒸<i>&#10022;</i></span><span>排湖烟波<i>&#10022;</i></span><span>水乡夜游<i>&#10022;</i></span>
+    <span>梦里水乡<i>&#10022;</i></span><span>千年沔城<i>&#10022;</i></span>
+  </div>
+</div>
+
+<!-- 数据条 -->
+<div class="stats reveal">
+  <div class="stats-card">
+    <div class="stat"><b><span data-count="1500">0</span><i>+</i></b><span>年沔阳文脉</span></div>
+    <div class="stat"><b><span data-count="2">0</span><i>项</i></b><span>国家级非遗</span></div>
+    <div class="stat"><b><span data-count="30">0</span><i>+</i></b><span>非遗代表项目</span></div>
+    <div class="stat"><b><span data-count="4">0</span><i>季</i></b><span>水乡风物常新</span></div>
+  </div>
+</div>
+
+<!-- ========== 景点板块 ========== -->
+<section class="block" id="scenic">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">SCENIC · 小镇风光</div>
+      <h2>一步一景 · 入画沔阳</h2>
+      <p>依百里排湖而建，枕水而居。白墙黛瓦之间，藏着江汉平原最温柔的水色与烟火。</p>
+    </div>
+    <div class="scenic-grid">
+      <article class="spot reveal">
+        <figure class="spot-fig" data-char="湖"><span class="tag">湖光潋滟</span>
+          <img loading="lazy" alt="排湖风景区" onerror="this.parentNode.removeChild(this)"
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Aerial%20view%20of%20vast%20tranquil%20lake%20in%20Jianghan%20plain%20China%20at%20golden%20hour%2C%20long%20wooden%20boardwalk%20into%20misty%20water%2C%20reeds%20and%20lotus%20leaves%2C%20distant%20water%20town%2C%20soft%20teal%20and%20warm%20golden%20light%2C%20photorealistic%20travel%20photography&image_size=landscape_4_3">
+        </figure>
+        <div class="spot-body">
+          <h3>排湖风景区</h3>
+          <p>「百里排湖，水天一色。」江汉平原上的天然明珠，环湖绿道骑行、湖畔观鸟、落日染金，沔阳小镇便依这泓碧水而建。</p>
+        </div>
+      </article>
+      <article class="spot reveal" data-delay="120">
+        <figure class="spot-fig" data-char="街"><span class="tag">烟火水街</span>
+          <img loading="lazy" alt="沔阳小镇水街" onerror="this.parentNode.removeChild(this)"
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20water%20town%20ancient%20street%2C%20white%20walls%20and%20dark%20grey%20tile%20roofs%2C%20stone%20arch%20bridge%20over%20canal%2C%20wooden%20boats%20and%20red%20lanterns%2C%20morning%20mist%2C%20soft%20teal%20and%20warm%20tones%2C%20photorealistic&image_size=landscape_4_3">
+        </figure>
+        <div class="spot-body">
+          <h3>沔阳水街</h3>
+          <p>飞檐翘角、画舫摇橹。白天是非遗展演与小吃飘香的街市，入夜化作一河灯影，摇橹船载着水乡夜色缓缓穿城。</p>
+        </div>
+      </article>
+      <article class="spot reveal" data-delay="60">
+        <figure class="spot-fig" data-char="杉"><span class="tag">水上森林</span>
+          <img loading="lazy" alt="梦里水乡" onerror="this.parentNode.removeChild(this)"
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Metasequoia%20water%20forest%20in%20China%2C%20tall%20reddish%20trees%20growing%20from%20emerald%20green%20water%2C%20small%20wooden%20rowing%20boat%20with%20fisherman%2C%20mirror%20reflections%2C%20dreamy%20morning%20mist%20light%2C%20photorealistic&image_size=landscape_4_3">
+        </figure>
+        <div class="spot-body">
+          <h3>梦里水乡</h3>
+          <p>万株池杉立于碧水之中，晨雾未散时划一叶小舟入林，水镜倒影、白鹭惊飞——江汉平原最梦幻的「水上森林」。</p>
+        </div>
+      </article>
+      <article class="spot reveal" data-delay="180">
+        <figure class="spot-fig" data-char="城"><span class="tag">千年古城</span>
+          <img loading="lazy" alt="沔城古镇" onerror="this.parentNode.removeChild(this)"
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Ancient%20Chinese%20courtyard%20temple%2C%20grey%20brick%20walls%20and%20upturned%20eaves%2C%20old%20ginkgo%20tree%2C%20stone%20path%2C%20incense%20smoke%20in%20soft%20light%2C%20quiet%20historic%20town%2C%20photorealistic&image_size=landscape_4_3">
+        </figure>
+        <div class="spot-body">
+          <h3>沔城古镇</h3>
+          <p>复州故城文脉千年，诸葛武侯祠、沔城清真寺、陈友谅故居静立其间。一砖一瓦，皆是沔阳人的乡愁记忆。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 非遗板块 ========== -->
+<section class="block" id="heritage">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">HERITAGE · 非遗文化</div>
+      <h2>千年技艺 · 活在当下</h2>
+      <p>沔阳的非遗不止于陈列——点一盏灯，皮影便起舞；剪一刀纸，团花即绽放；敲一段渔鼓，乡音自回响。</p>
+      <div class="smart-chips">
+        <span><b>&#9672;</b>数字非遗展馆</span><span><b>&#9672;</b>云游皮影剧场</span><span><b>&#9672;</b>AR 剪纸体验</span>
+      </div>
+    </div>
+
+    <div class="heritage-grid">
+      <div class="map-box reveal">
+        <div id="bdMap">
+          <div class="map-placeholder" id="mapPlaceholder">
+            <span class="map-ico">&#128205;</span>
+            <span>地图加载中…</span>
+          </div>
+        </div>
+        <div class="map-ctrl">
+          <button class="map-btn" id="locateBtn">定 位</button>
+        </div>
+      </div>
+
+      <div class="map-side reveal" data-delay="120">
+        <h3>沔阳小镇 · 地图定位<span class="badge-n">导航直达</span></h3>
+        <div class="quote">「百里排湖，水天一色。」</div>
+        <p>沔阳小镇位于湖北省仙桃市排湖风景区，依百里排湖而建，枕水而居。点击「定位」按钮，即可在地图上查看小镇位置，一键导航直达。</p>
+        <ul class="h-list">
+          <li>地址：湖北省仙桃市 · 排湖风景区沔阳小镇</li>
+          <li>自驾：沪渝高速 G50 排湖出口下，约 10 分钟抵景区</li>
+          <li>动车：武汉 ⇌ 仙桃，约 1 小时直达</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h-interactive">
+      <div class="h-card reveal">
+        <h4>沔阳雕花剪纸<span class="badge-n">国家级非遗</span></h4>
+        <p>剪刀与刻刀并用，「图必有意，意必吉祥」。下面是一张折好的红纸——点一下，亲手剪开一朵团花。</p>
+        <div class="paper-stage">
+          <svg id="flower" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="30" fill="none" stroke="#c14b3a" stroke-width="2" stroke-dasharray="5 6"/>
+            <circle cx="100" cy="100" r="12" fill="#c14b3a"/>
+            <g fill="#c14b3a">
+              <g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g>
+              <g transform="rotate(45 100 100)"><g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g></g>
+              <g transform="rotate(90 100 100)"><g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g></g>
+              <g transform="rotate(135 100 100)"><g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g></g>
+              <g transform="rotate(180 100 100)"><g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g></g>
+              <g transform="rotate(225 100 100)"><g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g></g>
+              <g transform="rotate(270 100 100)"><g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g></g>
+              <g transform="rotate(315 100 100)"><g class="pt"><path d="M100,100 C82,76 84,44 100,18 C116,44 118,76 100,100 Z M100,84 L94,58 100,40 106,58 Z" fill-rule="evenodd"/></g></g>
+            </g>
+          </svg>
+          <div class="paper-tip">剪刀已备好，就差你这一剪</div>
+        </div>
+        <div class="stage-ctrl"><button class="drum-btn" id="unfoldBtn">剪 一 刀</button></div>
+      </div>
+
+      <div class="h-card reveal" data-delay="120">
+        <h4>沔阳渔鼓<span class="badge-n">道情说唱</span></h4>
+        <p>一筒渔鼓、两块云板，走村串巷唱尽人间悲欢。点一下，听听这来自江汉平原的节拍。</p>
+        <div class="drum-stage" id="drumStage">
+          <svg width="72" height="150" viewBox="0 0 72 150" aria-label="渔鼓筒">
+            <rect x="16" y="18" width="40" height="118" rx="20" fill="#b98a4e"/>
+            <rect x="16" y="18" width="40" height="118" rx="20" fill="url(#bambooG)" opacity=".55"/>
+            <path d="M16,52 h40 M16,88 h40" stroke="#8a6132" stroke-width="3"/>
+            <ellipse cx="36" cy="20" rx="19" ry="7" fill="#f3e3bb" stroke="#8a6132" stroke-width="2.5"/>
+            <path d="M28,10 q8,-8 16,0" stroke="#8a6132" stroke-width="3" fill="none"/>
+            <defs>
+              <linearGradient id="bambooG" x1="0" x2="1">
+                <stop offset="0" stop-color="#6d4a2b"/><stop offset=".5" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#6d4a2b"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="eq"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="drum-lyric" id="drumLyric">咚 哒 · 咚咚 哒 ——</div>
+        </div>
+        <div class="stage-ctrl"><button class="drum-btn" id="drumBtn">敲 一 段</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 美食板块 ========== -->
+<section class="block" id="food">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">TASTE · 特色美食</div>
+      <h2>无菜不蒸 · 鲜香沔阳</h2>
+      <p>「无菜不蒸，无蒸不宴。」一笼蒸菜蒸出了沔阳人待客的最高礼数，也蒸腾着水乡最绵长的烟火气。</p>
+    </div>
+
+    <div class="food-feature reveal" data-tabs>
+      <div class="food-show" data-char="蒸">
+        <img loading="lazy" alt="沔阳三蒸" data-tab-img="0" onerror="this.parentNode.removeChild(this)"
+          src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20steamed%20dishes%2C%20bamboo%20steamers%20with%20rice%20flour%20steamed%20pork%2C%20glutinous%20rice%20pearl%20meatballs%20and%20steamed%20fish%2C%20rising%20steam%2C%20rustic%20blue%20ceramic%20plates%2C%20food%20photography%2C%20soft%20light&image_size=square_hd">
+        <img loading="lazy" alt="粉蒸肉" data-tab-img="1" onerror="this.parentNode.removeChild(this)" hidden
+          src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Steamed%20pork%20slices%20coated%20with%20golden%20rice%20flour%20on%20lotus%20leaf%20in%20steamer%2C%20glistening%2C%20Chinese%20cuisine%2C%20food%20photography%2C%20warm%20soft%20light&image_size=square_hd">
+        <img loading="lazy" alt="珍珠丸子" data-tab-img="2" onerror="this.parentNode.removeChild(this)" hidden
+          src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20pearl%20meatballs%20coated%20in%20translucent%20glutinous%20rice%2C%20steaming%2C%20on%20white%20ceramic%20plate%20garnished%20cilantro%2C%20food%20photography&image_size=square_hd">
+        <img loading="lazy" alt="清蒸鲜鱼" data-tab-img="3" onerror="this.parentNode.removeChild(this)" hidden
+          src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20steamed%20whole%20fish%20with%20scallion%20shreds%20and%20soy%20sauce%2C%20steam%20rising%2C%20oval%20ceramic%20plate%2C%20food%20photography%2C%20soft%20light&image_size=square_hd">
+      </div>
+      <div class="food-info">
+        <h3>沔阳三蒸<span class="badge-n" style="background:rgba(46,125,120,.1);border-color:rgba(46,125,120,.35);color:#2e7d78">省级非遗技艺</span></h3>
+        <div class="saying">「清贫甲天下，蒸菜度春秋」—— 老沔阳人的智慧</div>
+        <div class="tabs">
+          <button class="tab-btn active" data-target="0">三蒸全景</button>
+          <button class="tab-btn" data-target="1">粉蒸肉</button>
+          <button class="tab-btn" data-target="2">珍珠丸子</button>
+          <button class="tab-btn" data-target="3">清蒸鲜鱼</button>
+        </div>
+        <div class="panel active" data-panel="0">
+          <p>沔阳三蒸，即蒸鱼、蒸肉、蒸菜。相传起源于元末，渔民炊具简陋，便将食材裹粉上笼，一锅同蒸——从此「无菜不蒸」成了沔阳餐桌的规矩。粉垫底、肉居中、鱼在上，一笼同熟，滋味相融。</p>
+          <span class="mini-tag">米粉垫底</span><span class="mini-tag">一笼同蒸</span><span class="mini-tag">原汁原味</span>
+        </div>
+        <div class="panel" data-panel="1">
+          <p>五花三层的五花肉切厚片，裹炒香的米粉，垫荷叶或时蔬上笼。旺火足汽蒸足时辰，肉酥而米油润，入口即化，肥而不腻。</p>
+          <span class="mini-tag">肥而不腻</span><span class="mini-tag">米粉油润</span>
+        </div>
+        <div class="panel" data-panel="2">
+          <p>肉馅搓圆，滚上晶莹糯米，蒸后粒粒如珍珠缀身，故得此名。咬开弹糯外衣，肉汁鲜香四溢，是宴席上最先「光盘」的一道。</p>
+          <span class="mini-tag">粒粒晶莹</span><span class="mini-tag">鲜嫩弹牙</span>
+        </div>
+        <div class="panel" data-panel="3">
+          <p>排湖鲜鱼现捞现蒸，只以葱姜提味、热油激香。鱼眼一凸即刻起锅，肉质细嫩清甜，是水乡人家「靠水吃水」的底气。</p>
+          <span class="mini-tag">湖水鲜鱼</span><span class="mini-tag">清甜细嫩</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-grid">
+      <article class="food-card reveal">
+        <figure class="food-fig" data-char="鸡">
+          <img loading="lazy" alt="毛嘴卤鸡" onerror="this.parentNode.removeChild(this)"
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20soy%20braised%20whole%20chicken%2C%20glossy%20reddish%20brown%20skin%2C%20on%20ceramic%20plate%20with%20scallion%20garnish%2C%20food%20photography%2C%20warm%20soft%20light&image_size=square">
+        </figure>
+        <div class="body"><h4>毛嘴卤鸡</h4><p>百年老卤，皮黄肉嫩、香透骨缝。撕一腿就着米饭，是游子行李箱里最沉的乡愁。</p></div>
+      </article>
+      <article class="food-card reveal" data-delay="100">
+        <figure class="food-fig" data-char="饼">
+          <img loading="lazy" alt="红庙酥饼" onerror="this.parentNode.removeChild(this)"
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Golden%20crispy%20Chinese%20flaky%20sesame%20pastry%20biscuits%20stacked%20on%20wooden%20board%2C%20layers%20of%20crust%2C%20warm%20tones%2C%20close-up%20food%20photography&image_size=square">
+        </figure>
+        <div class="body"><h4>红庙酥饼</h4><p>层层起酥、一碰掉渣，甜而不腻。配一杯清茶，就是老沔阳午后最惬意的滋味。</p></div>
+      </article>
+      <article class="food-card reveal" data-delay="200">
+        <figure class="food-fig" data-char="鳝">
+          <img loading="lazy" alt="香辣黄鳝" onerror="this.parentNode.removeChild(this)"
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Spicy%20braised%20eel%20segments%20with%20dried%20chilies%20and%20garlic%20in%20black%20clay%20pot%2C%20glossy%20red%20sauce%2C%20Chinese%20cuisine%2C%20food%20photography&image_size=square">
+        </figure>
+        <div class="body"><h4>香辣黄鳝</h4><p>仙桃是「中国黄鳝之都」。一锅香辣端上桌，鳝段肥美、麻辣鲜香，配酒配饭皆是一绝。</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 攻略板块 ========== -->
+<section class="block" id="guide">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">GUIDE · 游玩攻略</div>
+      <h2>两日沔阳 · 慢游指南</h2>
+      <p>跟着时间轴走，把湖光、老街、非遗与蒸香一并收进行囊。</p>
+    </div>
+
+    <div class="guide-tabs" data-tabs>
+      <button class="tab-btn active" data-target="1">一日精华游</button>
+      <button class="tab-btn" data-target="2">二日深度游</button>
+    </div>
+
+    <div class="panel active" data-panel="1">
+      <div class="timeline reveal">
+        <div class="tl-item"><span class="time">09:00</span><h4>排湖环湖晨骑</h4><p>沿环湖绿道骑行，晨雾里的湖面如铺开的宣纸，水鸟掠过芦苇荡。</p></div>
+        <div class="tl-item"><span class="time">11:30</span><h4>沔街 · 三蒸宴</h4><p>寻一临水老铺，点一笼三蒸配毛嘴卤鸡，把「无菜不蒸」吃个明白。</p></div>
+        <div class="tl-item"><span class="time">13:30</span><h4>非遗体验馆</h4><p>看一场皮影戏，跟传承人学剪一朵团花，临走带上自己的「作品」。</p></div>
+        <div class="tl-item"><span class="time">16:00</span><h4>水街画舫摇橹</h4><p>登摇橹船穿桥过巷，两岸灯影次第亮起，船娘哼起渔鼓小调。</p></div>
+        <div class="tl-item"><span class="time">19:00</span><h4>湖畔落日 · 夜游</h4><p>在湖畔栈道等一场落日，再看水街灯会点亮，为一天画上句号。</p></div>
+      </div>
+    </div>
+    <div class="panel" data-panel="2">
+      <div class="timeline reveal">
+        <div class="tl-item"><span class="day-tag">Day 1</span><span class="time">上午</span><h4>梦里水乡 · 水上森林</h4><p>清晨入林划舟，池杉倒影与白鹭齐飞，随手一拍即是壁纸。</p></div>
+        <div class="tl-item"><span class="day-tag">Day 1</span><span class="time">下午</span><h4>沔城访古</h4><p>诸葛武侯祠、沔城清真寺、陈友谅故居——千年复州城的故事慢慢讲。</p></div>
+        <div class="tl-item"><span class="day-tag">Day 1</span><span class="time">晚上</span><h4>夜宿水乡</h4><p>宿在水街临河民宿，推窗即灯影桨声，早些睡，明日还有好风光。</p></div>
+        <div class="tl-item"><span class="day-tag">Day 2</span><span class="time">上午</span><h4>排湖风景区</h4><p>环湖骑行或乘画舫游湖，晴天看水天一色，阴天赏烟波浩渺。</p></div>
+        <div class="tl-item"><span class="day-tag">Day 2</span><span class="time">下午</span><h4>带一份沔阳回家</h4><p>伴手礼三件套：雕花剪纸、毛嘴卤鸡、红庙酥饼——把水乡滋味带回家。</p></div>
+      </div>
+    </div>
+
+    <div class="guide-cards">
+      <div class="g-card reveal">
+        <h4><span class="ico">&#128644;</span>交通指南</h4>
+        <ul>
+          <li>动车：武汉 ⇌ 仙桃，约 1 小时直达</li>
+          <li>自驾：沪渝高速 G50 排湖出口下，约 10 分钟抵景区</li>
+          <li>市内：公交 / 出租前往排湖风景区·沔阳小镇</li>
+        </ul>
+      </div>
+      <div class="g-card reveal" data-delay="100">
+        <h4><span class="ico">&#128197;</span>贴心提示</h4>
+        <ul>
+          <li>最佳季节：春秋两季，水色与气温都刚好</li>
+          <li>皮影戏：周末及节假日有专场演出</li>
+          <li>夜游画舫建议提前半小时到码头候船</li>
+        </ul>
+      </div>
+      <div class="g-card reveal" data-delay="200">
+        <h4><span class="ico">&#127873;</span>伴手礼推荐</h4>
+        <ul>
+          <li>雕花剪纸镜框：把国家级非遗挂上墙</li>
+          <li>毛嘴卤鸡真空装：原汁原味带回家</li>
+          <li>红庙酥饼礼盒：老手艺的酥与香</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 页脚 ========== -->
+<footer id="about">
+  <div class="foot-wrap">
+    <div class="foot-brand">
+      <span class="seal">沔</span>
+      <h3>文旅非遗 · 智传仙桃</h3>
+      <p>以数字之光，传千年之艺。愿每一位远道而来的客人，都能在沔阳小镇听见水声、看见非遗、尝到乡愁。</p>
+    </div>
+    <div>
+      <h5>快捷导航</h5>
+      <ul>
+        <li><a href="#scenic">小镇风光</a></li>
+        <li><a href="#heritage">非遗文化</a></li>
+        <li><a href="#food">特色美食</a></li>
+        <li><a href="#guide">游玩攻略</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>联系我们</h5>
+      <ul>
+        <li>地址：湖北省仙桃市 · 排湖风景区沔阳小镇</li>
+        <li>咨询：沔阳小镇游客服务中心</li>
+        <li>云游：搜索「沔阳小镇」数字展馆</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">© <span id="year">2026</span> 文旅非遗 · 智传仙桃 | 沔阳小镇文旅宣传 · 课程作品</div>
+</footer>
+
+<!-- AI 智游助手 -->
+<button id="aiFab" aria-label="AI 智游助手">
+  <span class="fab-ring"></span>
+  <span class="fab-ico">&#128172;</span>
+  <span class="fab-close">&#10005;</span>
+</button>
+<aside id="aiPanel" aria-hidden="true">
+  <div class="ai-head">
+    <div class="ava">沔</div>
+    <div><h4>沔小仙 · 智游助手</h4><span class="sub">水乡非遗 · 一问便知</span></div>
+    <button class="ai-close" id="aiClose" aria-label="关闭">&#10005;</button>
+  </div>
+  <div class="ai-body" id="aiBody">
+    <div class="msg bot">你好呀～我是沔小仙，沔阳小镇的智游助手 &#127982; 问我景点、非遗、美食或攻略，我都能给你娓娓道来～</div>
+  </div>
+  <div class="ai-tips">
+    <div class="tip-label">也许你想问：</div>
+    <div class="chips">
+      <span class="chip">沔阳皮影戏有什么特色？</span>
+      <span class="chip">沔阳三蒸是哪三蒸？</span>
+      <span class="chip">排湖风景区有什么好玩的？</span>
+      <span class="chip">两日游怎么安排？</span>
+      <span class="chip">有什么伴手礼推荐？</span>
+      <span class="chip">最佳旅游季节是什么时候？</span>
+    </div>
+  </div>
+  <div class="ai-input">
+    <textarea id="aiText" rows="1" placeholder="问问沔阳小镇的方方面面…"></textarea>
+    <button id="aiSend" aria-label="发送">&#10145;</button>
+  </div>
+</aside>
+
+<!-- 返回顶部 -->
+<button id="toTop" aria-label="返回顶部">&#8593;</button>
+
+<script>
+/* ================= Polyfills ================= */
+if (!('remove' in Element.prototype)) {
+  Element.prototype.remove = function() {
+    if (this.parentNode) { this.parentNode.removeChild(this); }
+  };
+}
+if (!String.prototype.includes) {
+  String.prototype.includes = function(search, start) {
+    return this.indexOf(search, start) !== -1;
+  };
+}
+
+/* ================= 工具 ================= */
+function $(s, p) { return (p || document).querySelector(s); }
+function $$(s, p) { return Array.prototype.slice.call((p || document).querySelectorAll(s)); }
+var reduceMotion = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+
+/* ================= 平滑滚动 ================= */
+function smoothScrollTo(targetY, duration) {
+  var startY = window.pageYOffset || document.documentElement.scrollTop;
+  var diff = targetY - startY;
+  if (Math.abs(diff) < 2) { window.scrollTo(0, targetY); return; }
+  var startTime = null;
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    var ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+    window.scrollTo(0, startY + diff * ease);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ================= 导航 ================= */
+var navbar = $('#navbar'), navLinks = $('#navLinks'), hamburger = $('#hamburger');
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+$$('#navLinks a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ================= 锚链接平滑滚动 ================= */
+$$('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href && href.length > 1) {
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var targetTop = target.offsetTop - 86;
+        smoothScrollTo(targetTop, 800);
+        if (history.pushState) { history.pushState(null, null, href); }
+      }
+    }
+  });
+});
+
+/* ================= 滚动：进度条 / 导航样式 / 返回顶部 ================= */
+var progress = $('#progress'), toTop = $('#toTop'), hero = $('#home');
+var sections = $$('section[id], footer[id]');
+function onScroll(){
+  var st = window.pageYOffset || document.documentElement.scrollTop;
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (st / h * 100) + '%';
+  navbar.classList.toggle('scrolled', st > 40);
+  toTop.classList.toggle('show', st > 700);
+  var current = 'home';
+  sections.forEach(function(sec) { if (st >= sec.offsetTop - 140) current = sec.id; });
+  $$('#navLinks a').forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+  if (!reduceMotion && st < window.innerHeight * 1.2) {
+    $$('#scene .layer').forEach(function(l) {
+      var d = parseFloat(l.getAttribute('data-depth') || 0);
+      l.style.transform = 'translateY(' + (st * d * 0.55) + 'px)';
+    });
+    var t = $('#heroText');
+    t.style.opacity = String(Math.max(0, 1 - st / (window.innerHeight * 0.62)));
+    var vhVal = window.innerHeight / 100;
+    var yOff = -4 * vhVal - st * 0.28;
+    t.style.transform = 'translateY(' + yOff + 'px)';
+  }
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+toTop.addEventListener('click', function() { smoothScrollTo(0, 800); });
+
+/* ================= 首屏鼠标视差 ================= */
+if (!reduceMotion) {
+  hero.addEventListener('mousemove', function(e) {
+    var mx = e.clientX / window.innerWidth - 0.5;
+    var my = e.clientY / window.innerHeight - 0.5;
+    $$('#scene .layer').forEach(function(l) {
+      var d = parseFloat(l.getAttribute('data-depth') || 0);
+      l.style.marginLeft = (mx * d * 90) + 'px';
+      l.style.marginTop = (my * d * 40) + 'px';
+    });
+  });
+}
+
+/* ================= 滚动浮现 ================= */
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function(es) {
+    es.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (e.target.getAttribute('data-delay') || 0) + 'ms';
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.14});
+  $$('.reveal').forEach(function(el) { io.observe(el); });
+
+  var cio = new IntersectionObserver(function(es) {
+    es.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var end = parseInt(el.getAttribute('data-count'), 10);
+      var t0 = performance.now();
+      function tick(t) {
+        var p = Math.min((t - t0) / 1400, 1);
+        var ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(end * ease));
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      tick(t0);
+      cio.unobserve(el);
+    });
+  }, {threshold: 0.6});
+  $$('[data-count]').forEach(function(el) { cio.observe(el); });
+} else {
+  $$('.reveal').forEach(function(el) { el.classList.add('in'); });
+  $$('[data-count]').forEach(function(el) {
+    el.textContent = el.getAttribute('data-count');
+  });
+}
+
+/* ================= 通用选项卡 ================= */
+$$('[data-tabs]').forEach(function(box) {
+  var scope = box.classList.contains('food-feature') ? box : box.parentElement;
+  var btns = $$('.tab-btn', box);
+  var panels = $$('.panel', scope);
+  var imgs = $$('[data-tab-img]', scope);
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = btn.getAttribute('data-target');
+      btns.forEach(function(b) { b.classList.toggle('active', b === btn); });
+      panels.forEach(function(p) { p.classList.toggle('active', p.getAttribute('data-panel') === id); });
+      imgs.forEach(function(im) { im.hidden = im.getAttribute('data-tab-img') !== id; });
+    });
+  });
+});
+
+/* ================= 百度地图定位 ================= */
+var bmap = null;
+var locateBtn = document.getElementById('locateBtn');
+var mapPlaceholder = document.getElementById('mapPlaceholder');
+var MIANYANG_LNG = 113.2819, MIANYANG_LAT = 30.2902;
+
+function initBMap() {
+  if (typeof BMap === 'undefined' || typeof BMap.Map !== 'function') {
+    setTimeout(initBMap, 200);
+    return;
+  }
+  mapPlaceholder.style.display = 'none';
+  bmap = new BMap.Map('bdMap');
+  var point = new BMap.Point(MIANYANG_LNG, MIANYANG_LAT);
+  bmap.centerAndZoom(point, 14);
+  bmap.enableScrollWheelZoom(true);
+  bmap.addControl(new BMap.NavigationControl());
+  bmap.addControl(new BMap.ScaleControl());
+  var marker = new BMap.Marker(point);
+  bmap.addOverlay(marker);
+  var infoWin = new BMap.InfoWindow('沔阳小镇 · 排湖风景区<br>地址：湖北省仙桃市排湖风景区');
+  marker.addEventListener('click', function() {
+    bmap.openInfoWindow(infoWin, point);
+  });
+}
+
+locateBtn.addEventListener('click', function() {
+  if (bmap) {
+    var point = new BMap.Point(MIANYANG_LNG, MIANYANG_LAT);
+    bmap.centerAndZoom(point, 16);
+    bmap.panTo(point);
+  } else {
+    initBMap();
+  }
+});
+
+window.addEventListener('load', initBMap);
+
+/* ================= 剪纸互动 ================= */
+var flower = $('#flower'), unfoldBtn = $('#unfoldBtn');
+unfoldBtn.addEventListener('click', function() {
+  var opened = flower.classList.toggle('unfold');
+  unfoldBtn.textContent = opened ? '收 起 来' : '再 剪 一 朵';
+  $('.paper-tip').textContent = opened ? '妙手生花 · 团花绽放' : '剪刀已备好，就差你这一剪';
+});
+
+/* ================= 渔鼓互动 ================= */
+var drumStage = $('#drumStage'), drumBtn = $('#drumBtn'), drumLyric = $('#drumLyric');
+var ac = null;
+function beep(t, freq, dur, type, vol) {
+  var o = ac.createOscillator(), g = ac.createGain();
+  o.type = type; o.frequency.setValueAtTime(freq, t);
+  g.gain.setValueAtTime(vol, t);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g);
+  g.connect(ac.destination);
+  o.start(t); o.stop(t + dur + 0.02);
+}
+var beats = [[0,110],[0.3,520],[0.6,110],[0.85,110],[1.15,520],[1.4,110],[1.7,520],[1.95,110]];
+var lyrics = ['咚 哒 · 咚咚 哒 ——','渔鼓声声 · 云板铿锵 ——','道情一曲 · 唱尽悲欢 ——'];
+var drumIdx = 0, drumBusy = false;
+drumBtn.addEventListener('click', function() {
+  if (drumBusy) return;
+  drumBusy = true;
+  try {
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    if (ac.state === 'suspended') ac.resume();
+    var now = ac.currentTime + 0.05;
+    beats.forEach(function(b) {
+      if (b[1] < 200) { beep(now + b[0], b[1], 0.28, 'sine', 0.5); }
+      else { beep(now + b[0], b[1], 0.12, 'triangle', 0.16); }
+    });
+  } catch(e) { /* 无声环境：仅保留视觉动画 */ }
+  drumStage.classList.add('playing');
+  drumLyric.textContent = lyrics[drumIdx = (drumIdx + 1) % lyrics.length];
+  setTimeout(function() {
+    drumStage.classList.remove('playing');
+    drumBusy = false;
+    drumLyric.textContent = '点一下，再听一段 ——';
+  }, 2600);
+});
+
+/* ================= 年份 ================= */
+$('#year').textContent = String(new Date().getFullYear());
+
+/* ================= 走马灯 ================= */
+var mq = $('#marquee');
+mq.innerHTML += mq.innerHTML;
+
+/* ================= AI 智游助手 ================= */
+var aiFab = $('#aiFab'), aiPanel = $('#aiPanel'), aiBody = $('#aiBody'),
+    aiText = $('#aiText'), aiSend = $('#aiSend');
+var aiKB = [
+  {keys:['皮影','影人'],a:'沔阳皮影戏是国家级非遗，"一口叙说千古事，双手对舞百万兵"。它融说唱、雕刻、操演于一炉，牛皮镂刻的影人透亮如琥珀，配渔鼓调一唱三叹。选皮、制皮、画稿、镂刻、敷彩、缀结二十余道工序，是江汉平原农闲时节最热闹的"电影"。'},
+  {keys:['剪纸','雕花','团花'],a:'沔阳雕花剪纸是国家级非遗，"图必有意，意必吉祥"。剪刀与刻刀并用，红纸一折一剪团花便绽放，常用于婚庆寿宴，是江汉平原最喜庆的民俗符号。'},
+  {keys:['渔鼓','道情','云板'],a:'沔阳渔鼓属道情说唱，一筒渔鼓、两块云板，走村串巷唱尽人间悲欢。渔鼓筒蒙膜击之咚咚，配云板节拍，是江汉平原乡土气息最浓的曲艺之一。'},
+  {keys:['三蒸','粉蒸肉','珍珠丸子','清蒸鱼','蒸鱼','蒸肉','蒸菜'],a:'沔阳三蒸即蒸鱼、蒸肉、蒸菜，省级非遗技艺，相传起源于元末。粉垫底、肉居中、鱼在上，一笼同蒸滋味相融。"无菜不蒸，无蒸不宴"是沔阳餐桌的规矩：粉蒸肉肥而不腻、珍珠丸子粒粒晶莹、清蒸鲜鱼清甜细嫩。'},
+  {keys:['卤鸡','毛嘴'],a:'毛嘴卤鸡是沔阳名吃，百年老卤，皮黄肉嫩、香透骨缝。撕一腿就着米饭，是游子行李箱里最沉的乡愁。'},
+  {keys:['酥饼','红庙'],a:'红庙酥饼层层起酥、一碰掉渣，甜而不腻。配一杯清茶，便是老沔阳午后最惬意的滋味。'},
+  {keys:['黄鳝','鳝'],a:'仙桃是"中国黄鳝之都"。一锅香辣黄鳝端上桌，鳝段肥美、麻辣鲜香，配酒配饭皆是一绝。'},
+  {keys:['排湖','环湖','绿道'],a:'排湖风景区是江汉平原上的天然明珠，"百里排湖，水天一色"。环湖绿道骑行、湖畔观鸟、落日染金，沔阳小镇便依这泓碧水而建，晴天水天一色、阴天烟波浩渺。'},
+  {keys:['水街','沔街','画舫','摇橹','夜游','灯影'],a:'沔阳水街飞檐翘角、画舫摇橹。白天是非遗展演与小吃飘香的街市，入夜化作一河灯影，摇橹船载着水乡夜色缓缓穿城。夜游画舫建议提前半小时到码头候船。'},
+  {keys:['梦里水乡','池杉','水上森林'],a:'梦里水乡有万株池杉立于碧水之中，晨雾未散时划一叶小舟入林，水镜倒影、白鹭惊飞——这是江汉平原最梦幻的"水上森林"，随手一拍即是壁纸。'},
+  {keys:['沔城','古镇','武侯','陈友谅','清真寺','复州'],a:'沔城古镇是复州故城，文脉千年。诸葛武侯祠、沔城清真寺、陈友谅故居静立其间，一砖一瓦皆是沔阳人的乡愁记忆。'},
+  {keys:['两日','二日','深度','day2','day1'],a:'两日深度游：Day1 上午梦里水乡水上森林划舟，下午沔城访古，晚上夜宿水街临河民宿；Day2 上午排湖风景区骑行或乘画舫游湖，下午带一份沔阳回家——雕花剪纸、毛嘴卤鸡、红庙酥饼。'},
+  {keys:['一日','精华','路线','行程'],a:'一日精华游：09:00 排湖环湖晨骑；11:30 沔街三蒸宴；13:30 非遗体验馆看皮影、学剪纸；16:00 水街画舫摇橹；19:00 湖畔落日与水街夜游灯会。'},
+  {keys:['交通','怎么去','高铁','动车','自驾'],a:'交通指南：动车武汉⇌仙桃约1小时直达；自驾沪渝高速G50排湖出口下约10分钟抵景区；市内可乘公交或出租前往排湖风景区·沔阳小镇。'},
+  {keys:['伴手礼','纪念品','特产','带回家'],a:'伴手礼三件套：雕花剪纸镜框——把国家级非遗挂上墙；毛嘴卤鸡真空装——原汁原味带回家；红庙酥饼礼盒——老手艺的酥与香。'},
+  {keys:['季节','什么时候去','几月','最佳','天气'],a:'最佳旅游季节是春秋两季，水色与气温都刚好。皮影戏周末及节假日有专场演出，建议提前安排。'},
+  {keys:['非遗','文化','技艺','传统'],a:'沔阳非遗不止于陈列——皮影戏、雕花剪纸、渔鼓是国家级非遗，三蒸技艺为省级非遗。共2项国家级非遗、30+代表项目、1500+年文脉：点一盏灯皮影起舞，剪一刀纸团花绽放，敲一段渔鼓乡音回响。'},
+  {keys:['门票','开放','几点','时间','价格'],a:'景区位于湖北省仙桃市排湖风景区沔阳小镇，建议关注"沔阳小镇"官方数字展馆获取最新开放时间与演出场次。周末及节假日皮影戏有专场，夜游画舫建议提前半小时到码头候船。'},
+  {keys:['你好','你是','谢谢','hi','hello','在吗','你是谁'],a:'你好呀～我是沔小仙，沔阳小镇的智游助手&#127982; 景点、非遗、美食、攻略都可以问我～'}
+];
+function aiMatch(q) {
+  var s = q.toLowerCase();
+  for (var i = 0; i < aiKB.length; i++) {
+    var item = aiKB[i];
+    for (var j = 0; j < item.keys.length; j++) {
+      if (s.indexOf(item.keys[j].toLowerCase()) !== -1) return item.a;
+    }
+  }
+  return null;
+}
+function addMsg(html, who) {
+  var d = document.createElement('div');
+  d.className = 'msg ' + who;
+  d.innerHTML = html;
+  aiBody.appendChild(d);
+  aiBody.scrollTop = aiBody.scrollHeight;
+  return d;
+}
+function showLoading() {
+  var d = document.createElement('div');
+  d.className = 'msg bot';
+  d.innerHTML = '<div class="ql"><i></i><i></i><i></i></div>';
+  aiBody.appendChild(d);
+  aiBody.scrollTop = aiBody.scrollHeight;
+  return d;
+}
+var aiBusy = false;
+function aiReply(q) {
+  if (aiBusy) return;
+  aiBusy = true; aiSend.disabled = true;
+  var ans = aiMatch(q);
+  var loader = showLoading();
+  var delay = ans ? 700 + Math.random() * 500 : 3200 + Math.random() * 1200;
+  setTimeout(function() {
+    loader.remove();
+    addMsg(ans || '服务器正忙，请稍后重试 &#128566;', 'bot');
+    aiBusy = false; aiSend.disabled = false;
+  }, delay);
+}
+function aiSendQ(text) {
+  text = (text || aiText.value).trim();
+  if (!text) return;
+  addMsg(text.replace(/</g, '&lt;').replace(/\n/g, '<br>'), 'user');
+  aiText.value = ''; aiText.style.height = 'auto';
+  aiReply(text);
+}
+aiFab.addEventListener('click', function() {
+  var open = aiPanel.classList.toggle('open');
+  aiFab.classList.toggle('open', open);
+  aiPanel.setAttribute('aria-hidden', String(!open));
+  if (open) setTimeout(function() { aiText.focus(); }, 350);
+});
+$('#aiClose').addEventListener('click', function() {
+  aiPanel.classList.remove('open');
+  aiFab.classList.remove('open');
+  aiPanel.setAttribute('aria-hidden', 'true');
+});
+aiSend.addEventListener('click', function() { aiSendQ(); });
+aiText.addEventListener('keydown', function(e) {
+  if ((e.key === 'Enter' || e.keyCode === 13) && !e.shiftKey) { e.preventDefault(); aiSendQ(); }
+});
+aiText.addEventListener('input', function() {
+  aiText.style.height = 'auto';
+  aiText.style.height = Math.min(aiText.scrollHeight, 90) + 'px';
+});
+$$('.ai-tips .chip').forEach(function(c) { c.addEventListener('click', function() { aiSendQ(c.textContent); }); });
+</script>
+</body>
+</html>
